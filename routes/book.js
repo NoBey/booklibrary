@@ -19,7 +19,7 @@ router.post('/book/delete', BookAction.delete)
 router.post('/book/update', BookAction.update)
 router.post('/book/take', BookAction.take)
 router.post('/book/repay', BookAction.repay)
-router.post('/book/list', BookAction.list)
+router.get('/book/list', BookAction.list)
 
 
 export default router

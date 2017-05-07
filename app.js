@@ -15,7 +15,7 @@ import users      from './routes/users'
 import books      from './routes/book'
 
 // session 密钥
-app.keys = ['TJCU'];
+app.keys = ['icxyz'];
 
 // 加载配置中间件
 app.use(convert(session({

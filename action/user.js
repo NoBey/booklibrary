@@ -18,7 +18,6 @@ export default {
     const email    = body.email || ''
     const role     = 'user'
     const count    = await User.count({'user': user})
-
     if( count==0 ){
       ctx.body = ctx.session.user = await User.create({
         'user'    : user,
@@ -51,13 +50,14 @@ export default {
     const email    = body.email || ''
     const role     = body.role || ''
 
-    const data =  await User.findOneAndUpdate({'user': name},{
+    const data =  await User.findOneAndUpdate({'user': user},{
       'user'    : user,
       'password': password,
       'tel'     : tel,
       'email'   : email,
       'role'    : role
     })
+
     if(data._id) ctx.body = {stats:'ok',msg:'更新成功'}
     else ctx.body = {stats:0,msg:'更新失败'}
   },
@@ -115,7 +115,7 @@ export default {
     const page  = ctx.params.page || 1
     const limit = 2
     const skip  = (page-1)*limit
-    ctx.body   = await User.find({}, 'user role').skip(skip).limit(limit)
+    ctx.body   = await User.find({}, 'user role password tel email').skip(skip).limit(limit)
   },
 
   /*

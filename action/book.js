@@ -132,7 +132,7 @@ export default {
     const page  = ctx.params.page || 1
     const limit = 2
     const skip  = (page-1)*limit
-    ctx.body   = await Book.find({}).skip(skip).limit(limit)
+    ctx.body   = await Book.find({  'is_deleted'    : false}) //.skip(skip).limit(limit)
   },
 
 
