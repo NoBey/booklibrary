@@ -135,12 +135,13 @@ export default {
       'user'     : name,
       'password' : password
     })
-
     if(count==1) {
-      ctx.body = ctx.session.user = await User.findOne({
-        'user'     : name,
-        'password' : password
-      }, 'user tel email role')
+      const data = ctx.session.user = await User.findOne({
+          'user'     : name,
+          'password' : password
+        }, 'user tel email role')
+      data.cookie = ctx.header.cookie
+    ctx.body = data
     }else{
       ctx.body =  {
         stats: 0,

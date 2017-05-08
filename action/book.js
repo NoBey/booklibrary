@@ -130,9 +130,9 @@ export default {
 
   list: async(ctx, next) => {
     const page  = ctx.params.page || 1
-    const limit = 2
+    const limit = 10
     const skip  = (page-1)*limit
-    ctx.body   = await Book.find({  'is_deleted'    : false}) //.skip(skip).limit(limit)
+    ctx.body   = await Book.find({}) //.skip(skip).limit(limit)
   },
 
 

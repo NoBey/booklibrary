@@ -1,5 +1,6 @@
 const router = require('koa-router')(); // 路由中间件
 import BookAction from '../action/book'
+import UserMw     from '../middleware/user'
 
 /*
   ** 路由列表
@@ -13,13 +14,13 @@ import BookAction from '../action/book'
 */
 
 
-router.get('/book/test', BookAction.test)
-router.post('/book/add', BookAction.add)
-router.post('/book/delete', BookAction.delete)
-router.post('/book/update', BookAction.update)
-router.post('/book/take', BookAction.take)
-router.post('/book/repay', BookAction.repay)
-router.get('/book/list', BookAction.list)
+router.get('/book/test', UserMw.check, BookAction.test)
+router.post('/book/add', UserMw.check, BookAction.add)
+router.post('/book/delete', UserMw.check, BookAction.delete)
+router.post('/book/update', UserMw.check, BookAction.update)
+router.post('/book/take', UserMw.check, BookAction.take)
+router.post('/book/repay', UserMw.check, BookAction.repay)
+router.get('/book/list', UserMw.check, BookAction.list)
 
 
 export default router
